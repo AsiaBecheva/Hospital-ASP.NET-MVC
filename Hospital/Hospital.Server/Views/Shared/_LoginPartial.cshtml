@@ -1,0 +1,50 @@
+﻿@using Hospital.Server.Models
+
+@using Microsoft.AspNet.Identity
+@if (Request.IsAuthenticated)
+{
+    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+    {
+    @Html.AntiForgeryToken()
+
+    <ul class="nav navbar-nav navbar-right">
+        <li>
+            @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
+        </li>
+        <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
+    </ul>
+    }
+}
+else
+{
+        @*@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })*@
+        @*@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })*@
+
+        <a href="#" data-toggle="modal" data-target="#login-modal" style="margin-left:600px;">Login</a>
+        <div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+            <div class="modal-dialog">
+                <div class="loginmodal-container">
+                    <h1>Login to Your Account</h1><br>
+                    <form action="Account/Login", method="post">
+                        @Html.AntiForgeryToken()
+
+                        <input type="text" name="Email" placeholder="Email">
+
+                        <input type="password" name="Password" placeholder="Password">
+
+                        <input type="submit" name="login" class="login loginmodal-submit" value="Login">
+                    </form>
+
+                    <div class="login-help">
+                        <a href="@Url.Action("Register", "Account")">Register</a> - <a href="@Url.Action("ForgotPassword", "Account")">Forgot Password</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+}
+
+@section scripts{
+    @Scripts.Render("~/bundles/bootstrap")    
+}
+
+

@@ -7,20 +7,23 @@
     {
     @Html.AntiForgeryToken()
 
-    <ul class="nav navbar-nav navbar-right">
-        <li>
-            @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
+    <ul>
+        <li style="margin:5px;">
+            <a href="#" class="icon-info">
+                <i class="fa fa-bell" aria-hidden="true"></i>
+                <span class="label label-primary">3</span>
+            </a>
         </li>
-        <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
+        <li style="margin:5px;">
+            @Html.ActionLink(User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
+        </li>
+        <li style="margin:5px;"><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
     </ul>
     }
 }
 else
 {
-        @*@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })*@
-        @*@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })*@
-
-        <a href="#" data-toggle="modal" data-target="#login-modal" style="margin-left:600px;">Login</a>
+        <a href="#" data-toggle="modal" data-target="#login-modal" >Login</a>
         <div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
             <div class="modal-dialog">
                 <div class="loginmodal-container">

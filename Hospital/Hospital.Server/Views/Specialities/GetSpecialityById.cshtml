@@ -1,0 +1,34 @@
+﻿
+@model Hospital.Server.Models.SpecialitiesViewModel
+
+<header>
+    <h1 style="text-align:center">@Model.Title</h1>
+</header>
+
+<div class="container content">
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+            <div class="testimonials">
+                <div class="active item">
+                    <blockquote><p style="word-break:break-all;">@Model.Description</p></blockquote>
+
+                    <h2>Clinical trials for current speciality:</h2>
+                    @foreach (var trial in Model.ClinicalTrials)
+                    {
+                        <h3>@trial.Title</h3>
+                    }
+                    @foreach (var doctor in Model.Doctors)
+                    {
+                        <div class="carousel-info">
+                            <img alt="" src="http://keenthemes.com/assets/bootsnipp/img1-small.jpg" class="pull-left">
+                            <div class="pull-left">
+                                <span class="testimonials-name">@doctor.Name</span>
+                                <span class="testimonials-post" style="word-break:break-all;">@doctor.Description</span>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

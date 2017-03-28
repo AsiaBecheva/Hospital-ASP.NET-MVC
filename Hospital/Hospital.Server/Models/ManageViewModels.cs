@@ -5,7 +5,7 @@
     using Microsoft.AspNet.Identity;
     using Microsoft.Owin.Security;
 
-    public class IndexViewModel
+    public class HomeViewModel
     {
         public bool HasPassword { get; set; }
         public IList<UserLoginInfo> Logins { get; set; }

@@ -16,8 +16,8 @@ namespace Hospital.Data.Migrations
             this.AutomaticMigrationDataLossAllowed = true;
         }
 
-        private const string adminRoleName = "AsyaAdmin";
-        private const string adminPassword = "AsyaAdmin";
+        private const string adminRoleName = "Administrator";
+        private const string adminPassword = "123456";
 
 
         protected override void Seed(ApplicationDbContext context)
@@ -43,8 +43,8 @@ namespace Hospital.Data.Migrations
 
                 var user = new User()
                 {
-                    UserName = "asya@gmail.com",
-                    Email = "asya@gmail.com"
+                    UserName = "asya@admin.com",
+                    Email = "asya@admin.com"
                 };
 
                 IdentityResult createUserResult = userManager.Create(user, adminPassword);

@@ -60,6 +60,10 @@
     <Compile Include="ApplicationDbContext.cs" />
     <Compile Include="Constants\PathConstants.cs" />
     <Compile Include="GenerateRandomData.cs" />
+    <Compile Include="Migrations\201703281904231_asd.cs" />
+    <Compile Include="Migrations\201703281904231_asd.Designer.cs">
+      <DependentUpon>201703281904231_asd.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\GenericRepository.cs" />
@@ -76,6 +80,11 @@
       <Project>{2b6e140d-f71d-4b5c-bfc1-d31d8ae5c8f4}</Project>
       <Name>Hospital.DatabaseModels</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201703281904231_asd.resx">
+      <DependentUpon>201703281904231_asd.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

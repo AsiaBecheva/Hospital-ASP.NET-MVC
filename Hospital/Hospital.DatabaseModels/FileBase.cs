@@ -1,6 +1,6 @@
 ﻿namespace Hospital.DatabaseModels
 {
-    public class FileBase
+    public abstract class FileBase
     {
         public int Id { get; set; }
 

@@ -1,7 +1,4 @@
-﻿body {
-    /*padding-top: 50px;*/
-    padding-bottom: 20px;
-}
+﻿
 
 /* Set padding to keep content from hitting the edges */
 .body-content {
@@ -708,6 +705,44 @@ header {
     transition: 0.1s all;
 }
 
+#footer {
+    border-top: 5px solid #CDB380;
+    background: #033649 none repeat scroll 0% 0%;
+    padding-top: 30px;
+    clear: both;
+    color: #AAA;
+    display: block;
+}
+
+#footer .widgettitle {
+    margin: 0px;
+    padding: 0px 0px 15px;
+    border-bottom: medium none;
+}
+#footer h4 {
+    color: #FFF;
+}
+
+#footer ul {
+    list-style: outside none none;
+}
+
+#footer li {
+    padding: 7px 0px;
+    border-bottom: 1px dotted rgba(255, 255, 255, 0.2);
+    margin: 0px;
+}
+
+#footer li a {
+    color: #DDD;
+}
+
+#sub-floor {
+    color: #AAA;
+    background: #031634 none repeat scroll 0% 0%;
+    padding: 10px 0px;
+}
+
 @media only screen and (max-device-width: 767px) {
     .login-logo img {
         margin: 0 auto;
@@ -856,7 +891,7 @@ header {
 
 /* Testimonials */
 .testimonials blockquote {
-    background: #f8f8f8 none repeat scroll 0 0;
+    background: #f7eae1 none repeat scroll 0 0;
     border: medium none;
     color: #666;
     display: block;

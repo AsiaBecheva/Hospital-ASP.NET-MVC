@@ -223,7 +223,9 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="AutomapperConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AdministrationController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\ClinicalResultsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\SpecialitiesController.cs" />
@@ -233,6 +235,7 @@
     <Compile Include="Infrastructure\IHaveCustomMappings.cs" />
     <Compile Include="Infrastructure\IMapFrom.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\PatientResultViewModel.cs" />
     <Compile Include="Models\SpecialitiesIndexViewModel.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\SpecialitiesViewModel.cs" />
@@ -240,6 +243,7 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\AdminStyles.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\images\doctor.jpg" />
@@ -249,6 +253,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Scripts\AdminScript.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">
@@ -301,6 +306,9 @@
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Specialities\GetSpecialityById.cshtml" />
+    <Content Include="Views\ClinicalResults\GetClinicalResult.cshtml" />
+    <Content Include="Views\Administration\Index.cshtml" />
+    <Content Include="Views\Shared\_AdministrationLayout.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -4,6 +4,11 @@
 
     public class ClinicalResult
     {
+        public ClinicalResult()
+        {
+            this.AddedOn = DateTime.Now;
+        }
+
         public int Id { get; set; }
 
         public virtual User Patient { get; set; }

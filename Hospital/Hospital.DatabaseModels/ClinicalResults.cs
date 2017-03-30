@@ -17,6 +17,6 @@
 
         public StatusResult StatusResult { get; set; }
 
-        public virtual PDF PDF { get; set; }
+        public virtual PDF File { get; set; }
     }
 }

@@ -235,6 +235,8 @@
     <Compile Include="Infrastructure\IHaveCustomMappings.cs" />
     <Compile Include="Infrastructure\IMapFrom.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\AdminViewModels\AddResultViewModel.cs" />
+    <Compile Include="Models\AdminViewModels\PatientViewModel.cs" />
     <Compile Include="Models\AdminViewModels\ResultViewModel.cs" />
     <Compile Include="Models\PatientResultViewModel.cs" />
     <Compile Include="Models\SpecialitiesIndexViewModel.cs" />
@@ -308,8 +310,10 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Specialities\GetSpecialityById.cshtml" />
     <Content Include="Views\ClinicalResults\GetClinicalResult.cshtml" />
-    <Content Include="Views\Administration\Patients.cshtml" />
+    <Content Include="Views\Administration\ClinicalResults.cshtml" />
     <Content Include="Views\Shared\_AdministrationLayout.cshtml" />
+    <Content Include="Views\Administration\AddResult.cshtml" />
+    <Content Include="Views\Administration\Patients.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

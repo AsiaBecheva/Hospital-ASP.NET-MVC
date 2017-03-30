@@ -1,45 +1,32 @@
-﻿@model List<Hospital.Server.Models.AdminViewModels.ResultViewModel>
+﻿@model List<Hospital.Server.Models.AdminViewModels.PatientViewModel>
 
 @{
     Layout = "~/Views/Shared/_AdministrationLayout.cshtml";
 }
 
-<div class="container">
-    <div class="row">
-        <div class="col-lg-6">
-            <button type="button" class="btn btn-primary"> <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>Add Clinical result</button>
-        </div><!-- /.col-lg-6 -->
-        <div class="col-lg-6">
-            <div class="input-group">
-                <input type="search" id="search" class="form-control" placeholder="Search result">
-                <span class="input-group-btn">
-                    <button class="btn btn-default" type="button"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
-                </span>
-            </div><!-- /input-group -->
-        </div><!-- /.col-lg-6 -->
-    </div><!-- /.row -->
-    </br>
-    <div style="height: 800px; overflow: auto">
-        <table class="table" id="table">
-            <thead>
-                <tr>
-                    <th>Patient Name</th>
-                    <th>Status Result</th>
-                    <th>Result ID</th>
-                    <th>Added On</th>
-                </tr>
-            </thead>
-            <tbody>
-            @foreach (var result in Model)
+<!DOCTYPE html>
+
+<header>
+    <h1 style="text-align:center">Registered Users</h1>
+</header>
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-offset-3 col-md-6">
+                <div class="input-group">
+                    <input type="search" id="search" class="form-control" placeholder="Search result">
+                    <span class="input-group-btn">
+                        <button class="btn btn-default" type="button"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
+                    </span>
+                </div><!-- /input-group -->
+            </div>
+        </div>
+        <div class="row">
+            @foreach (var user in Model)
             {
-                <tr>
-                    <td>@result.Patient.UserName</td>
-                    <td><span class="glyphicon glyphicon-refresh" aria-hidden="true">@result.StatusResult</span></td>
-                    <td>@result.Id</td>
-                    <td>@result.AddedOn</td>
-                </tr>
-                }
-            </tbody>
-        </table>
+                <h4 class="col-md-offset-2 col-md-6" style="margin-top:20px;">@user.UserName</h4>
+                <a href="@Url.Action("AddResult", "Administration", new { id = user.Id })" class="col-md-2">Add Result</a>
+            }
+        </div>
     </div>
-</div>
+</section>

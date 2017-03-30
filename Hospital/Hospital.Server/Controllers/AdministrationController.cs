@@ -6,6 +6,8 @@
     using System.Linq;
     using AutoMapper.QueryableExtensions;
     using Models.AdminViewModels;
+    using DatabaseModels;
+    using System.IO;
 
     [Authorize(Roles = GlobalConstants.adminRoleName)]
     public class AdministrationController : BaseController
@@ -14,7 +16,7 @@
         {
         }
 
-        public ActionResult Patients()
+        public ActionResult ClinicalResults()
         {
             var allresults = this.Data
                 .ClinicalResults
@@ -25,6 +27,57 @@
                 .ToList();
 
             return View(allresults);
+        }
+
+        public ActionResult Patients()
+        {
+            var patients = this.Data
+                .Users
+                .All()
+                .Where(x => !x.Email.ToLower().Contains("admin"))
+                .OrderByDescending(x => x.UserName)
+                .Project()
+                .To<PatientViewModel>()
+                .ToList();
+
+            return View(patients);
+        }
+
+        [HttpGet]
+        public ActionResult AddResult(string id)
+        {
+            var forUser = this.Data.Users
+                .All()
+                .Where(x => x.Id == id)
+                .FirstOrDefault();
+
+            var result = new AddResultViewModel()
+            {
+                Patient = forUser
+            };
+
+            return View(result);
+        }
+
+        [HttpPost]
+        public ActionResult AddResult(AddResultViewModel result)
+        {
+            if (ModelState.IsValid)
+            {
+                var ClinResult = new AddResultViewModel()
+                {
+                    StatusResult = result.StatusResult,
+                };
+
+                using (var memory = new MemoryStream())
+                {
+
+                }
+            }
+
+
+
+            return View();
         }
     }
 }

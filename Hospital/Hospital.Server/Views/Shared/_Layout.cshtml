@@ -26,7 +26,7 @@
                     <ul>
                         @if (Request.IsAuthenticated && User.IsInRole(GlobalConstants.adminRoleName))
                         {
-                            <li style="background-color:midnightblue"><a href="@Url.Action("Patients", "Administration")"><i class="fa fa-users" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Administration</span></a></li>
+                            <li style="background-color:midnightblue"><a href="@Url.Action("ClinicalResults", "Administration")"><i class="fa fa-users" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Administration</span></a></li>
                         }
                         <li class="active"><a href="@Url.Action("Index", "Home")"><i class="fa fa-home" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Home</span></a></li>
                         <li><a href="@Url.Action("GetResult", "ClinicalResults")"><i class="fa fa-file-pdf-o" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Clinical Results</span></a></li>

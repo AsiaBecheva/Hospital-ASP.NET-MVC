@@ -1,0 +1,49 @@
+﻿@model List<Hospital.Server.Models.AdminViewModels.ResultViewModel>
+
+@{
+    Layout = "~/Views/Shared/_AdministrationLayout.cshtml";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-6">
+            <a href="@Url.Action("Patients", "Administration")" class="btn btn-primary"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>Add Clinical result</a>
+        </div><!-- /.col-lg-6 -->
+        <div class="col-lg-6">
+            <div class="input-group">
+                <input type="search" id="search" class="form-control" placeholder="Search result">
+                <span class="input-group-btn">
+                    <button class="btn btn-default" type="button"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
+                </span>
+            </div><!-- /input-group -->
+        </div><!-- /.col-lg-6 -->
+    </div><!-- /.row -->
+    </br>
+    <div style="height: 800px; overflow: auto">
+        <table class="table" id="table">
+            <thead>
+                <tr>
+                    <th>Patient Name</th>
+                    <th>Status Result</th>
+                    <th>Result ID</th>
+                    <th>Added On</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+            @foreach (var result in Model)
+            {
+                <tr>
+                    <td>@result.Patient.UserName</td>
+                    <td><span class="glyphicon glyphicon-refresh" aria-hidden="true">@result.StatusResult</span></td>
+                    <td>@result.Id</td>
+                    <td>@result.AddedOn</td>
+                    <td><a href="~/Controllers/AdministrationController/EditResult/" + @result.Id class="fa fa-pencil-square-o"></a></td>
+                    <td><a href="~/Controllers/AdministrationController/Delete/" + @result.Id class="fa fa-times "></a></td>
+                </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

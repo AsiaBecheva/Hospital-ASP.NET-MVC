@@ -5,6 +5,7 @@
     using System.Linq;
     using AutoMapper.QueryableExtensions;
     using Models;
+    using DatabaseModels;
 
     public class ClinicalResultsController : BaseController
     {
@@ -25,6 +26,19 @@
                 .ToList();
 
             return View(result);
+        }
+
+        public ActionResult DownloadResult(int id)
+        {
+            var clinicalResult = this.Data.ClinicalResults.GetById(id);
+            if (clinicalResult != null)
+            {
+                PDF file = clinicalResult.File;
+
+                return File(file.Content, "text/plain", file.FileName);
+            }
+
+            return RedirectToAction("GetClinicalResult");
         }
     }
 }

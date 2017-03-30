@@ -1,5 +1,40 @@
-﻿@*@model List<Hospital.Server.Models.PatientResultViewModel>
+﻿@model List<Hospital.Server.Models.PatientResultViewModel>
+@using Hospital.DatabaseModels
 
 <header>
-    <h1></h1>
-</header>*@
+    <h1 style="text-align: center;">Get your Clinical Result</h1>
+</header>
+<section>
+    <div class="container">
+            @foreach (var result in Model)
+            {
+                if (result.StatusResult == StatusResult.Ready)
+                {
+                    <div class="row" style="margin:10px">
+                        <span>
+                            <strong>Result ID: </strong><span>@result.Id</span>
+                        </span>
+                        <span>
+                            <strong>Status: </strong><span>@result.StatusResult</span>
+                        </span>
+                        <span>
+                            <strong>Added on: </strong><span>@result.AddedOn</span>
+                        </span>
+                        <a href="@Url.Action("DownloadResult", "ClinicalResults", new { id = result.Id })" class="btn btn-success">Download file</a>
+                    </div>
+                }
+                else
+                {
+                    
+                    <div class="row" style="margin:10px">
+                        <span>
+                            <strong>Result ID: </strong><span>@result.Id  </span>
+                        </span>
+                        <span>
+                            <strong>Status: </strong><span>@result.StatusResult</span>
+                        </span>
+                    </div>
+                }
+            }
+    </div>
+</section>

@@ -7,6 +7,8 @@
 
     public class PatientResultViewModel:  IMapFrom<ClinicalResult>
     {
+        public int Id { get; set; }
+
         public DateTime AddedOn { get; set; }
 
         public StatusResult StatusResult { get; set; }

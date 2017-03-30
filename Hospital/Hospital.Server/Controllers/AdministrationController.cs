@@ -12,7 +12,7 @@
     [Authorize(Roles = GlobalConstants.adminRoleName)]
     public class AdministrationController : BaseController
     {
-        public AdministrationController(IUnitOfWork data): base(data)
+        public AdministrationController(IUnitOfWork data) : base(data)
         {
         }
 
@@ -64,20 +64,35 @@
         {
             if (ModelState.IsValid)
             {
-                var ClinResult = new AddResultViewModel()
+                var patient = this.Data.Users
+                    .GetById(result.PatientId);
+
+
+                var file = new PDF()
                 {
-                    StatusResult = result.StatusResult,
+                    FileName = result.UploadedFile.FileName,
                 };
 
                 using (var memory = new MemoryStream())
                 {
-
+                    result.UploadedFile.InputStream.CopyTo(memory);
+                    var content = memory.GetBuffer();
+                    file.Content = content;
                 }
+
+                var clinRes = new ClinicalResult()
+                {
+                    StatusResult = result.StatusResult,
+                    File = file,
+                };
+
+                patient.ClinicalResults.Add(clinRes);
+
+                this.Data.SaveChanges();
+
+                return RedirectToAction("Patients");
             }
-
-
-
-            return View();
+            return View(result);
         }
     }
 }

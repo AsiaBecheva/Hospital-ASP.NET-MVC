@@ -1,4 +1,6 @@
 ﻿@model List<Hospital.Server.Models.AdminViewModels.ResultViewModel>
+@using Hospital.DatabaseModels
+@using System.Linq;
 
 @{
     Layout = "~/Views/Shared/_AdministrationLayout.cshtml";
@@ -27,7 +29,7 @@
                     <th>Status Result</th>
                     <th>Result ID</th>
                     <th>Added On</th>
-                    <th>Edit</th>
+                    <th>Download</th>
                     <th>Delete</th>
                 </tr>
             </thead>
@@ -39,8 +41,15 @@
                     <td><span class="glyphicon glyphicon-refresh" aria-hidden="true">@result.StatusResult</span></td>
                     <td>@result.Id</td>
                     <td>@result.AddedOn</td>
-                    <td><a href="~/Controllers/AdministrationController/EditResult/" + @result.Id class="fa fa-pencil-square-o"></a></td>
-                    <td><a href="~/Controllers/AdministrationController/Delete/" + @result.Id class="fa fa-times "></a></td>
+                    @if (result.StatusResult == StatusResult.Ready)
+                    {
+                        <td><a href="@Url.Action("DownloadResult", "ClinicalResults", new { id = result.Id })" class="fa fa-file-pdf-o"></a></td>
+                    }
+                    else
+                    {
+                        <td>---</td>
+                    }
+                    <td><a href="@Url.Action("Delete", "Administration", new { id = result.Id })" class="fa fa-times"></a></td>
                 </tr>
                 }
             </tbody>

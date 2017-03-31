@@ -76,6 +76,17 @@
             return img;
         }
 
+        //private PDF CreatePdf()
+        //{
+        //    var pdf = new PDF()
+        //    {
+        //        Path = PathConstants.PathPDF,
+        //        FileName = "AsiaBecheva.pdf"
+        //    };
+
+        //    return pdf;
+        //}
+
 
         internal void SeedDoctorsClinicalTrialsAndSpecialties(ApplicationDbContext context)
         {

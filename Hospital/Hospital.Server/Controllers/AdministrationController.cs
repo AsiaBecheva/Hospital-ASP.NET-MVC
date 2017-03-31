@@ -8,39 +8,28 @@
     using Models.AdminViewModels;
     using DatabaseModels;
     using System.IO;
+    using Services.Contracts;
 
     [Authorize(Roles = GlobalConstants.adminRoleName)]
     public class AdministrationController : BaseController
     {
-        public AdministrationController(IUnitOfWork data) : base(data)
+
+        private IAdminService adminService;
+
+        public AdministrationController(IUnitOfWork data, IAdminService adminService) : base(data)
         {
+            this.adminService = adminService;
         }
+
 
         public ActionResult ClinicalResults()
         {
-            var allresults = this.Data
-                .ClinicalResults
-                .All()
-                .OrderByDescending(x => x.AddedOn)
-                .Project()
-                .To<ResultViewModel>()
-                .ToList();
-
-            return View(allresults);
+            return View(this.adminService.GetAllResults());
         }
 
         public ActionResult Patients()
         {
-            var patients = this.Data
-                .Users
-                .All()
-                .Where(x => !x.Email.ToLower().Contains("admin"))
-                .OrderByDescending(x => x.UserName)
-                .Project()
-                .To<PatientViewModel>()
-                .ToList();
-
-            return View(patients);
+            return View(this.adminService.GetPatients());
         }
 
         [HttpGet]
@@ -67,17 +56,18 @@
                 var patient = this.Data.Users
                     .GetById(result.PatientId);
 
+                var file = new PDF();
 
-                var file = new PDF()
+                if (result.UploadedFile != null)
                 {
-                    FileName = result.UploadedFile.FileName,
-                };
+                    file.FileName = result.UploadedFile.FileName;
 
-                using (var memory = new MemoryStream())
-                {
-                    result.UploadedFile.InputStream.CopyTo(memory);
-                    var content = memory.GetBuffer();
-                    file.Content = content;
+                    using (var memory = new MemoryStream())
+                    {
+                        result.UploadedFile.InputStream.CopyTo(memory);
+                        var content = memory.GetBuffer();
+                        file.Content = content;
+                    }
                 }
 
                 var clinRes = new ClinicalResult()
@@ -93,6 +83,24 @@
                 return RedirectToAction("Patients");
             }
             return View(result);
+        }
+
+
+        public ActionResult Delete(int id)
+        {
+            var result = this.Data.ClinicalResults.GetById(id);
+
+            if (result != null)
+            {
+                this.Data.ClinicalResults.Delete(result);
+                this.Data.SaveChanges();
+
+                return RedirectToAction("ClinicalResults");
+            }
+            else
+            {
+                return this.HttpNotFound("There is no Clinical result with such ID!");
+            }
         }
     }
 }

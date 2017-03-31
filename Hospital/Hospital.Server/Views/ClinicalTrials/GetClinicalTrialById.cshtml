@@ -1,0 +1,19 @@
+﻿@model Hospital.Server.Models.TrialViewModel
+
+<header>
+    <h1 style="text-align:center">@Model.Title</h1>
+</header>
+<section>
+    <div class="container" style="margin-top:20px;">
+        <div class="row">
+            <div class="col-md-offset-5">
+                <strong>Price: </strong> <span>@Model.Price</span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-offset-5">
+                <strong>Speciality: </strong> <span>@Model.Speciality.Title</span>
+            </div>
+        </div>
+    </div>
+</section>

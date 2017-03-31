@@ -12,21 +12,21 @@
 <section>
     <div class="container">
         <div class="row">
-            <div class="col-md-offset-3 col-md-6">
+            <div class="col-md-offset-3 col-md-6" style="margin-bottom:20px;">
                 <div class="input-group">
                     <input type="search" id="search" class="form-control" placeholder="Search result">
                     <span class="input-group-btn">
                         <button class="btn btn-default" type="button"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
                     </span>
-                </div><!-- /input-group -->
+                </div>
             </div>
         </div>
-        <div class="row">
             @foreach (var user in Model)
             {
-                <h4 class="col-md-offset-2 col-md-6" style="margin-top:20px;">@user.UserName</h4>
-                <a href="@Url.Action("AddResult", "Administration", new { id = user.Id })" class="col-md-2">Add Result</a>
+                <div class="row">
+                    <div class="col-md-2 col-md-offset-4" style="vertical-align: text-top;">@user.UserName</div>
+                    <a href="@Url.Action("AddResult", "Administration", new { id = user.Id })">Add Result</a>
+                </div>
             }
-        </div>
     </div>
 </section>

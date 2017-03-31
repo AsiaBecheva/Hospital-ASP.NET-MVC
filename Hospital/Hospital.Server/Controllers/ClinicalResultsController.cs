@@ -6,7 +6,9 @@
     using AutoMapper.QueryableExtensions;
     using Models;
     using DatabaseModels;
+    using Data.Constants;
 
+    [Authorize]
     public class ClinicalResultsController : BaseController
     {
 
@@ -14,7 +16,6 @@
         {
         }
 
-        [Authorize]
         public ActionResult GetClinicalResult()
         {
             var result = Data.ClinicalResults
@@ -27,18 +28,26 @@
 
             return View(result);
         }
-
+        
         public ActionResult DownloadResult(int id)
         {
             var clinicalResult = this.Data.ClinicalResults.GetById(id);
-            if (clinicalResult != null)
+            if (clinicalResult.File != null)
             {
                 PDF file = clinicalResult.File;
 
                 return File(file.Content, "text/plain", file.FileName);
             }
+            else
+            {
+                PDF file = new PDF()
+                {
+                    Path = PathConstants.PathPDF,
+                    FileName = "AsiaBecheva.pdf"
+                };
 
-            return RedirectToAction("GetClinicalResult");
+                return File(file.Path + file.FileName, "text/plain");
+            }
         }
     }
 }

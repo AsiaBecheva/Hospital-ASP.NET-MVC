@@ -11,6 +11,8 @@ namespace Hospital.Server.App_Start
     using Ninject;
     using Ninject.Web.Common;
     using Data.Repository;
+    using Services;
+    using Services.Contracts;
 
     public static class NinjectConfig 
     {
@@ -63,6 +65,7 @@ namespace Hospital.Server.App_Start
         private static void RegisterServices(IKernel kernel)
         {
             kernel.Bind<IUnitOfWork>().To<UnitOfWork>();
+            kernel.Bind<IAdminService>().To<AdminService>();
         }        
     }
 }

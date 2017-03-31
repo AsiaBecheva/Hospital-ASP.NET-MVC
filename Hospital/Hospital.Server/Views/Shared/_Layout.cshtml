@@ -29,8 +29,15 @@
                             <li style="background-color:midnightblue"><a href="@Url.Action("ClinicalResults", "Administration")"><i class="fa fa-users" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Administration</span></a></li>
                         }
                         <li class="active"><a href="@Url.Action("Index", "Home")"><i class="fa fa-home" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Home</span></a></li>
-                        <li><a href="@Url.Action("GetClinicalResult", "ClinicalResults")"><i class="fa fa-file-pdf-o" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Clinical Results</span></a></li>
-                        <li><a href="#"><i class="fa fa-stethoscope" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Clinical Trials</span></a></li>
+                        @if (Request.IsAuthenticated)
+                        {
+                            <li><a href="@Url.Action("GetClinicalResult", "ClinicalResults")"><i class="fa fa-file-pdf-o" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Clinical Results</span></a></li>
+                        }
+                        else
+                        {
+                            <li><a href="#" data-toggle="modal" data-target="#login-modal"><i class="fa fa-file-pdf-o" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Clinical Results</span></a></li>
+                        }
+                        <li><a href="@Url.Action("AllTrials", "ClinicalTrials")"><i class="fa fa-stethoscope" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Clinical Trials</span></a></li>
                         <li><a href="#"><i class="fa fa-plus-square" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Specialities</span></a></li>
                         <li><a href="#"><i class="fa fa-user-md" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Doctors</span></a></li>
                         <li><a href="#"><i class="fa fa-info-circle" aria-hidden="true"></i><span class="hidden-xs hidden-sm">About Us</span></a></li>
@@ -105,7 +112,7 @@
                                 <h4 class="widgettitle">Importent Page :</h4>
                                 <ul>
                                     <li><a href="#"><i class="fa fa-home fa-fw"></i> Home</a></li>
-                                    <li><a href="privacypolicy.php"><i class="fa fa-link"></i>   Privacy Policy</a></li>
+                                    <li><a href="#"><i class="fa fa-link"></i>   Privacy Policy</a></li>
                                     <li><a href="#"><i class="fa fa-envelope fa-fw"></i> Contact Us</a></li>
                                 </ul>
                             </div>
@@ -115,13 +122,13 @@
                                 <h4 class="widgettitle">Our social media :</h4>
                                 <ul>
                                     <li>
-                                        <a href="https://www.facebook.com/mr.dauod" target="_blank"><i class="fa fa-facebook"></i> Facebook</a>
+                                        <a href="https://www.facebook.com/asq.becheva" target="_blank"><i class="fa fa-facebook"></i> Facebook</a>
                                     </li>
                                     <li>
-                                        <a href="https://www.twitter.com/ayatquranCom" target="_blank"><i class="fa fa-twitter"></i> Twitter</a>
+                                        <a href="https://github.com/AsiaBecheva" target="_blank"><i class="fa fa-twitter"></i> Twitter</a>
                                     </li>
                                     <li>
-                                        <a href="http://www.youtube.com/user/sonsofye" target="_blank"><i class="fa fa-youtube"></i> Youtube</a>
+                                        <a href="https://github.com/AsiaBecheva" target="_blank"><i class="fa fa-youtube"></i> Youtube</a>
                                     </li>
                                 </ul>
                             </div>
@@ -138,7 +145,7 @@
                                 <div class="form-group">
                                     <div class="input-group">
                                         <span class="input-group-addon">Phone  :</span>
-                                        <input class="form-control" placeholder="+96777000000" type="text">
+                                        <input class="form-control" placeholder="+000000" type="text">
                                         <span class="input-group-btn">
                                             <button class="btn btn-primary" type="button">Subscribe !</button>
                                         </span>
@@ -146,19 +153,10 @@
                                 </div>
 
                             </div>
-                        </div> <!-- end widget1 -->
-                    </div> <!-- end .row -->
-                </div> <!-- end #footer-wrapper -->
-            </div> <!-- end .container -->
-        </div> <!-- end #footer-widgets -->
-        <div id="sub-floor">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-4 copyright">
-                        Copyright Medicine & Healthcare
-                    </div>
-                </div> <!-- end .row -->
-            </div>
+                        </div> 
+                    </div> 
+                </div> 
+            </div> 
         </div>
     </footer>
 

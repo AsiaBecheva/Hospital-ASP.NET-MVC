@@ -32,7 +32,7 @@
                         {
                             foreach (var trial in trials.ClinicalTrials)
                             {
-                                <a href="@Url.Action("GetClinicalTrialById", "Speciality", new { id = @trial.Id})">@trial.Title</a>
+                                <a href="@Url.Action("GetClinicalTrialById", "ClinicalTrials", new { id = @trial.Id})">@trial.Title</a>
                             }
                         }
                     </div>

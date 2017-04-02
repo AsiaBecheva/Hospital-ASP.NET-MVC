@@ -7,7 +7,6 @@
     <title>@ViewBag.Title - My ASP.NET Application</title>
     @Styles.Render("~/Content2/css")
     @Scripts.Render("~/bundles/modernizr")
-    @Scripts.Render("~/bundles/custom")
 
 </head>
 <body class="home">
@@ -17,8 +16,8 @@
                 <div class="col-md-12 main-menu">
                     <ul class="nav navbar-nav">
                         <li><a href="@Url.Action("ClinicalResults", "Administration")"><i class="fa fa-file-pdf-o"></i>Clinical Results</a></li>
-                        <li><a href="#"><i class="fa fa-plus-square"></i>Specialities</a></li>
-                        <li><a href="#"><i class="fa fa-user-md"></i>Doctors</a></li>
+                        <li><a href="@Url.Action("AllTrials", "Administration")"><i class="fa fa-plus-square"></i>Trials</a></li>
+                        <li><a href="@Url.Action("AllDoctors", "Administration")"><i class="fa fa-user-md"></i>Doctors</a></li>
                     </ul>
                     @if (Request.IsAuthenticated)
                     {

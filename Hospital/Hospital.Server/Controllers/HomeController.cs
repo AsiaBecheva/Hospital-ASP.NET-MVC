@@ -5,37 +5,20 @@
     using System.Linq;
     using AutoMapper.QueryableExtensions;
     using Models;
+    using Services.Contracts;
 
     public class HomeController : BaseController
     {
-        public HomeController(IUnitOfWork data): base(data)
+        IHomeService homeService;
+
+        public HomeController(IUnitOfWork data, IHomeService homeService) : base(data)
         {
+            this.homeService = homeService;
         }
 
         public ActionResult Index()
         {
-            var allSpecialities = this.Data
-                .Specialities
-                .All()
-                .Project()
-                .To<SpecialitiesIndexViewModel>()
-                .ToList();
-
-            return View(allSpecialities);
-        }
-
-        public ActionResult About()
-        {
-            ViewBag.Message = "Your application description page.";
-
-            return View();
-        }
-
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
-
-            return View();
+            return View(this.homeService.GetSpecialities());
         }
     }
 }

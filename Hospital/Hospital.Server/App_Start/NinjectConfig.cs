@@ -66,6 +66,10 @@ namespace Hospital.Server.App_Start
         {
             kernel.Bind<IUnitOfWork>().To<UnitOfWork>();
             kernel.Bind<IAdminService>().To<AdminService>();
+            kernel.Bind<ITrialService>().To<TrialService>();
+            kernel.Bind<IHomeService>().To<HomeService>();
+            kernel.Bind<ISpecialitiesService>().To<SpecialitiesService>();
+            kernel.Bind<IDoctorService>().To<DoctorService>();
         }        
     }
 }

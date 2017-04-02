@@ -2,7 +2,6 @@
 {
     using DatabaseModels;
     using Infrastructure.Mapping;
-    using AutoMapper;
     using System;
 
     public class ResultViewModel: IMapFrom<ClinicalResult>
@@ -15,6 +14,6 @@
 
         public StatusResult StatusResult { get; set; }
 
-        public virtual PDF PDF { get; set; }
+        public PDF PDF { get; set; }
     }
 }

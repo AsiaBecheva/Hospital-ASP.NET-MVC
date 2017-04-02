@@ -69,30 +69,19 @@
         {
             var img = new Image()
             {
-                FileName = "doctor",
+                FileName = "doctor1.jpg",
                 Path = PathConstants.PathImage
             };
 
             return img;
         }
-
-        //private PDF CreatePdf()
-        //{
-        //    var pdf = new PDF()
-        //    {
-        //        Path = PathConstants.PathPDF,
-        //        FileName = "AsiaBecheva.pdf"
-        //    };
-
-        //    return pdf;
-        //}
-
+        
 
         internal void SeedDoctorsClinicalTrialsAndSpecialties(ApplicationDbContext context)
         {
             if (!context.Doctors.Any() || !context.ClinicalTrials.Any() || !context.Specialities.Any())
             {
-                for (int i = 1; i < 11; i++)
+                for (int i = 1; i < 5; i++)
                 {
                     var clinicalTrial = new ClinicalTrial
                     {
@@ -115,7 +104,7 @@
                         {
                             Name = "Doctor - " + random.RandomDataString(6, 10) + " " + random.RandomDataString(10, 13),
                             Image = CreateImage(),
-                            Description = random.RandomDataString(100, 300)
+                            Description = random.RandomDataString(400, 1000)
                         };
                         listDoctors.Add(doctor);
                     }

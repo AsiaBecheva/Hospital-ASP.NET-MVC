@@ -2,40 +2,25 @@
 {
     using System.Web.Mvc;
     using Data.Repository;
-    using System.Linq;
-    using Models;
-    using AutoMapper.QueryableExtensions;
+    using Services.Contracts;
 
     public class ClinicalTrialsController : BaseController
     {
-        public ClinicalTrialsController(IUnitOfWork data) : base(data)
+        private ITrialService trialService;
+
+        public ClinicalTrialsController(IUnitOfWork data, ITrialService trialService) : base(data)
         {
+            this.trialService = trialService;
         }
 
         public ActionResult AllTrials()
         {
-            var allTrial = this.Data
-                .ClinicalTrials
-                .All()
-                .OrderBy(x => x.Price)
-                .Project()
-                .To<TrialViewModel>()
-                .ToList();
-
-            return View(allTrial);
+            return View(trialService.GetTrials());
         }
 
         public ActionResult GetClinicalTrialById(int id)
         {
-            var currentSpeciality = this.Data
-                .ClinicalTrials
-                .All()
-                .Where(s => s.Id == id)
-                .Project()
-                .To<TrialViewModel>()
-                .FirstOrDefault();
-
-            return View(currentSpeciality);
+            return View(trialService.GetTrialByID(id));
         }
     }
 }

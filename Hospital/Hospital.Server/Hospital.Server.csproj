@@ -221,12 +221,12 @@
     <Compile Include="App_Start\NinjectConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
-    <Compile Include="AutomapperConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdministrationController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\ClinicalResultsController.cs" />
     <Compile Include="Controllers\ClinicalTrialsController.cs" />
+    <Compile Include="Controllers\DoctorsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\SpecialitiesController.cs" />
@@ -236,9 +236,11 @@
     <Compile Include="Infrastructure\IHaveCustomMappings.cs" />
     <Compile Include="Infrastructure\IMapFrom.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\AdminViewModels\AddDoctorViewModel.cs" />
     <Compile Include="Models\AdminViewModels\AddResultViewModel.cs" />
     <Compile Include="Models\AdminViewModels\PatientViewModel.cs" />
     <Compile Include="Models\AdminViewModels\ResultViewModel.cs" />
+    <Compile Include="Models\DoctorViewModel.cs" />
     <Compile Include="Models\PatientResultViewModel.cs" />
     <Compile Include="Models\SpecialitiesIndexViewModel.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
@@ -247,6 +249,14 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\AdminService.cs" />
     <Compile Include="Services\Contracts\IAdminService.cs" />
+    <Compile Include="Services\Contracts\IHomeService.cs" />
+    <Compile Include="Services\Contracts\ISpecialitiesService.cs" />
+    <Compile Include="Services\Contracts\ITrialService.cs" />
+    <Compile Include="Services\DoctorService.cs" />
+    <Compile Include="Services\HomeService.cs" />
+    <Compile Include="Services\IDoctorService.cs" />
+    <Compile Include="Services\SpecialitiesService.cs" />
+    <Compile Include="Services\TrialService.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -321,6 +331,11 @@
     <Content Include="Views\Administration\Patients.cshtml" />
     <Content Include="Views\ClinicalTrials\GetClinicalTrialById.cshtml" />
     <Content Include="Views\ClinicalTrials\AllTrials.cshtml" />
+    <Content Include="Views\Doctors\AllDoctors.cshtml" />
+    <Content Include="Views\Doctors\GetDoctorById.cshtml" />
+    <Content Include="Views\Administration\AllDoctors.cshtml" />
+    <Content Include="Views\Administration\AddDoctor.cshtml" />
+    <Content Include="Views\Administration\EditDoctor.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

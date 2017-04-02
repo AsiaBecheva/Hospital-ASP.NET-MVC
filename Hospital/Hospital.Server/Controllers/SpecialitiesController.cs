@@ -2,27 +2,20 @@
 {
     using Data.Repository;
     using System.Web.Mvc;
-    using System.Linq;
-    using AutoMapper.QueryableExtensions;
-    using Models;
+    using Services.Contracts;
 
     public class SpecialitiesController : BaseController
     {
-        public SpecialitiesController(IUnitOfWork data): base(data)
+        private ISpecialitiesService specialitiesService;
+
+        public SpecialitiesController(IUnitOfWork data, ISpecialitiesService specialitiesService) : base(data)
         {
+            this.specialitiesService = specialitiesService;
         }
 
         public ActionResult GetSpecialityById(int id)
         {
-            var currentSpeciality = this.Data
-                .Specialities
-                .All()
-                .Where(s => s.Id == id)
-                .Project()
-                .To<SpecialitiesViewModel>()
-                .FirstOrDefault();
-            
-            return View(currentSpeciality);
+            return View(specialitiesService.GetById(id));
         }
     }
 }

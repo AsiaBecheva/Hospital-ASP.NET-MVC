@@ -1,0 +1,48 @@
+﻿@model Hospital.Server.Models.AdminViewModels.AddDoctorViewModel
+
+@{
+    Layout = "~/Views/Shared/_AdministrationLayout.cshtml";
+}
+
+@using (Html.BeginForm("AddDoctor", "Administration", FormMethod.Post, new { @class = "form-horizontal", role = "form", enctype = "multipart/form-data" }))
+{
+    <div class="row">
+        <div class="form-group">
+            @Html.LabelFor(x => x.Name, new { @class = "col-md-offset-2 col-md-2 control-label" })
+            <div class="col-md-5">
+                @Html.TextBoxFor(x => x.Name, new { @class = "form-control" })
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group">
+            @Html.LabelFor(m => m.Specialty, new { @class = "col-md-offset-2 col-md-2 control-label" })
+            <div class="col-md-5">
+                @Html.DropDownListFor(m => m.SpecialityId, Model.Specialty, new { @class = "form-control" })
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group">
+            @Html.LabelFor(m => m.Description, new { @class = "col-md-offset-2 col-md-2 control-label" })
+            <div class="col-md-5">
+                @Html.TextAreaFor(m => m.Description, new { @class = "form-control", rows = 8})
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group">
+            <label class="control-label col-md-offset-2 col-md-2" for="ImageUpload">Upload Image</label>
+            <div class="col-md-3">
+                <input type="file" name="ImageUpload" class="form-control" />
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group">
+            <div class="col-md-offset-6 col-md-3">
+                <input type="submit" class="btn btn-primary" />
+            </div>
+        </div>
+    </div>
+}

@@ -1,0 +1,14 @@
+﻿@model List<Hospital.Server.Models.DoctorViewModel>
+
+<div class="container">
+    @foreach (var doctor in Model)
+    {
+        <div class="col-md-9 blogShort">
+            <h2>@doctor.Name</h2>
+            <strong>Speciality: </strong> @doctor.SpecialityTitle
+            <a class="btn btn-blog pull-right marginBottom10" href="@Url.Action("GetDoctorById", "Doctors", new { id = doctor.Id })">More Information</a>
+        </div>
+    }
+
+    <div class="col-md-12 gap10"></div>
+</div>

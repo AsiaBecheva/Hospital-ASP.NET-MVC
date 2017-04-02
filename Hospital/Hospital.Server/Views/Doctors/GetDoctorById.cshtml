@@ -1,0 +1,25 @@
+﻿@model Hospital.Server.Models.DoctorViewModel
+
+<div class="container">
+    <div class="row">
+        <h2 class="col-md-offset-3">@Model.Name</h2>
+    </div>
+    <div class="row" style="margin-top:20px; margin-bottom:20px;">
+        @if (Model.Image.Content == null)
+        {
+            <img src="~/@(Model.Image.Path + Model.Image.FileName)" style="width: 300px;height: 250px" class="col-md-offset-1 col-md-3" />
+        }
+        else
+        {
+            <img src="@Url.Action("Image", "Doctors", new { id = Model.Image.Id })" style="width: 300px;height: 250px" class="col-md-offset-1 col-md-3" />
+        }
+        <div class="col-md-4">
+            <strong>Specialty: </strong><span>@Model.SpecialityTitle</span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-offset-1 col-md-8">
+            <p style="word-wrap: break-word;">@Model.Description</p>
+        </div>
+    </div>
+</div>

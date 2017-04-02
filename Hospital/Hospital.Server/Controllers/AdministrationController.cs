@@ -3,22 +3,24 @@
     using Data.Constants;
     using Data.Repository;
     using System.Web.Mvc;
-    using System.Linq;
-    using AutoMapper.QueryableExtensions;
     using Models.AdminViewModels;
     using DatabaseModels;
-    using System.IO;
     using Services.Contracts;
+    using Services;
+    using System.Linq;
+    using AutoMapper;
 
     [Authorize(Roles = GlobalConstants.adminRoleName)]
     public class AdministrationController : BaseController
     {
 
         private IAdminService adminService;
+        private IDoctorService doctorService;
 
-        public AdministrationController(IUnitOfWork data, IAdminService adminService) : base(data)
+        public AdministrationController(IUnitOfWork data, IAdminService adminService, IDoctorService doctorService) : base(data)
         {
             this.adminService = adminService;
+            this.doctorService = doctorService;
         }
 
 
@@ -35,14 +37,9 @@
         [HttpGet]
         public ActionResult AddResult(string id)
         {
-            var forUser = this.Data.Users
-                .All()
-                .Where(x => x.Id == id)
-                .FirstOrDefault();
-
             var result = new AddResultViewModel()
             {
-                Patient = forUser
+                Patient = this.Data.Users.GetById(id)
             };
 
             return View(result);
@@ -53,27 +50,12 @@
         {
             if (ModelState.IsValid)
             {
-                var patient = this.Data.Users
-                    .GetById(result.PatientId);
-
-                var file = new PDF();
-
-                if (result.UploadedFile != null)
-                {
-                    file.FileName = result.UploadedFile.FileName;
-
-                    using (var memory = new MemoryStream())
-                    {
-                        result.UploadedFile.InputStream.CopyTo(memory);
-                        var content = memory.GetBuffer();
-                        file.Content = content;
-                    }
-                }
+                var patient = this.Data.Users.GetById(result.PatientId);
 
                 var clinRes = new ClinicalResult()
                 {
                     StatusResult = result.StatusResult,
-                    File = file,
+                    File = this.adminService.GetPDF(result),
                 };
 
                 patient.ClinicalResults.Add(clinRes);
@@ -82,6 +64,7 @@
 
                 return RedirectToAction("Patients");
             }
+
             return View(result);
         }
 
@@ -102,5 +85,59 @@
                 return this.HttpNotFound("There is no Clinical result with such ID!");
             }
         }
+
+
+        public ActionResult AllDoctors()
+        {
+            return View(this.doctorService.GetDoctors());
+        }
+
+
+        public ActionResult GetDoctorById(int id)
+        {
+            var doctor = this.doctorService.GetById(id);
+
+            if (doctor != null)
+            {
+                return View(doctor);
+            }
+
+            return HttpNotFound("There is no doctor with such ID!");
+        }
+
+        [HttpGet]
+        public ActionResult AddDoctor()
+        {
+            AddDoctorViewModel model = new AddDoctorViewModel()
+            {
+                Specialty = this.Data
+                .Specialities
+                .All()
+                .Select(x => new SelectListItem
+                {
+                    Value = x.Id.ToString(),
+                    Text = x.Title
+                })
+            };
+
+            return View(model);
+        }
+
+        [HttpPost]
+        public ActionResult AddDoctor(AddDoctorViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var doc = Mapper.Map<Doctor>(model);
+                doc.Image = this.adminService.GetImage(model);
+                this.Data.Doctors.Add(doc);
+                this.Data.SaveChanges();
+
+                return RedirectToAction("AllDoctors");
+            }
+
+            return View(model);
+        }
+
     }
 }

@@ -1,0 +1,42 @@
+﻿@model Hospital.Server.Models.AdminViewModels.AddDoctorViewModel
+
+@{
+    Layout = "~/Views/Shared/_AdministrationLayout.cshtml";
+}
+
+@using (Html.BeginForm("AddDoctor", "Administration", FormMethod.Post, new { @class = "form-horizontal", role = "form", enctype = "multipart/form-data" }))
+{
+    <div class="row">
+        <div class="form-group">
+            @Html.LabelFor(x => x.Name)
+            <div class="col-md-3">
+                @Html.DisplayTextFor(x => x.Name)
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group">
+            @Html.LabelFor(m => m.Specialty, new { @class = "col-md-offset-3 col-md-2 control-label" })
+            <div class="col-md-3">
+                @Html.EnumDropDownListFor(m => m.Specialty, new { @class = "form-control" })
+            </div>
+        </div>
+    </div>
+
+    @*<input type="hidden" value="@Model.Patient.Id" name="PatientId" />*@
+    <div class="row">
+        <div class="form-group">
+            <label class="control-label col-md-offset-3 col-md-2" for="UploadedFile">Upload Result (pdf, txt)</label>
+            <div class="col-md-3">
+                <input type="file" id="Avatar" name="UploadedFile" class="form-control" />
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group">
+            <div class="col-md-offset-6 col-md-3">
+                <input type="submit" class="btn btn-primary" />
+            </div>
+        </div>
+    </div>
+}

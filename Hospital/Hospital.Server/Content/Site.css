@@ -136,6 +136,29 @@ li, ul {
     font-size: 18px;
 }
 
+.blogShort{ border-bottom:1px solid #ddd;}
+.add{background: #333; padding: 10%; height: 300px;}
+
+
+.btn-blog {
+    color: #ffffff;
+    background-color: #1d356b;
+    border-color: #1d356b;
+    border-radius:0;
+    margin-bottom:10px
+}
+.btn-blog:hover,
+.btn-blog:focus,
+.btn-blog:active,
+.btn-blog.active,
+.open .dropdown-toggle.btn-blog {
+    color: white;
+    background-color:#34ca78;
+    border-color: #34ca78;
+}
+ h2{color:#34ca78;}
+ .margin10{margin-bottom:10px; margin-right:10px;}
+
 .bg-image {
     background: url(../images/background-login.jpg) no-repeat 0 0 /;
     position: relative;
@@ -895,7 +918,7 @@ header {
 
 /* Testimonials */
 .testimonials blockquote {
-    background: #f7eae1 none repeat scroll 0 0;
+    background: #d5f3de none repeat scroll 0 0;
     border: medium none;
     color: #666;
     display: block;
@@ -930,7 +953,7 @@ header {
         position: absolute;
         border-style: solid;
         border-width: 20px 20px 0 0;
-        border-color: #e63f0c transparent transparent transparent;
+        border-color: #34ca78 transparent transparent transparent;
     }
 
 .testimonials .carousel-info img {
@@ -954,7 +977,7 @@ header {
     }
 
 .testimonials span.testimonials-name {
-    color: #e6400c;
+    color: #34ca78;
     font-size: 16px;
     font-weight: 300;
     margin: 23px 0 7px;

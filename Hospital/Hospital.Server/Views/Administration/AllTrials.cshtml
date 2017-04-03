@@ -1,5 +1,4 @@
-﻿@model List<Hospital.Server.Models.DoctorViewModel>
-@using Hospital.DatabaseModels
+﻿@model List<Hospital.Server.Models.TrialViewModel>
 
 @{
     Layout = "~/Views/Shared/_AdministrationLayout.cshtml";
@@ -9,7 +8,7 @@
     <div class="row">
         <div class="col-lg-6">
             <div class="input-group">
-                <input type="search" id="search" class="form-control" placeholder="Search doctor">
+                <input type="search" id="search" class="form-control" placeholder="Search clinical trial">
                 <span class="input-group-btn">
                     <button class="btn btn-default" type="button"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
                 </span>
@@ -17,7 +16,7 @@
         </div>
 
         <div class="col-lg-6">
-            <a href="@Url.Action("AddDoctor", "Administration")" class="btn btn-primary"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>Add Doctor</a>
+            <a href="@Url.Action("AddTrial", "Administration")" class="btn btn-primary"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>Add Trial</a>
         </div>
     </div>
     </br>
@@ -26,17 +25,21 @@
             <thead>
                 <tr>
                     <th>Name</th>
+                    <td>Is Available</td>
                     <th>Speciality</th>
+                    <th>Price</th>
                     <th>Delete</th>
                 </tr>
             </thead>
             <tbody>
-                @foreach (var doctor in Model)
-            {
+                @foreach (var trial in Model)
+                {
                     <tr>
-                        <td>@doctor.Name</td>
-                        <td>@doctor.SpecialityTitle</td>
-                        <td><a href="@Url.Action("DeleteDoctor", "Administration", new { id = doctor.Id })" class="fa fa-times"></a></td>
+                        <td>@trial.Title</td>
+                        <td>@trial.IsAvailable</td>
+                        <td>@trial.SpecialityTitle</td>
+                        <td>@trial.Price</td>
+                        <td><a href="@Url.Action("DeleteTrial", "Administration", new { id = trial.Id })" class="fa fa-times"></a></td>
                     </tr>
                 }
             </tbody>

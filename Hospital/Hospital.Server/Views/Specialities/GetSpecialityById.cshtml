@@ -17,13 +17,13 @@
                     {
                         <h3>@trial.Title</h3>
                     }
+                    <h2>Doctors:</h2>
                     @foreach (var doctor in Model.Doctors)
                     {
                         <div class="carousel-info">
-                            <img alt="" src="http://keenthemes.com/assets/bootsnipp/img1-small.jpg" class="pull-left">
+
                             <div class="pull-left">
-                                <span class="testimonials-name">@doctor.Name</span>
-                                <span class="testimonials-post" style="word-break:break-all;">@doctor.Description</span>
+                               <span class="testimonials-name">@doctor.Name</span>
                             </div>
                         </div>
                     }

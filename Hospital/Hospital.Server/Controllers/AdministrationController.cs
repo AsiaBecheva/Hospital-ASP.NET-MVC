@@ -7,7 +7,6 @@
     using DatabaseModels;
     using Services.Contracts;
     using Services;
-    using System.Linq;
     using AutoMapper;
 
     [Authorize(Roles = GlobalConstants.adminRoleName)]
@@ -16,11 +15,14 @@
 
         private IAdminService adminService;
         private IDoctorService doctorService;
+        private ITrialService trialService;
 
-        public AdministrationController(IUnitOfWork data, IAdminService adminService, IDoctorService doctorService) : base(data)
+        public AdministrationController(IUnitOfWork data, IAdminService adminService, IDoctorService doctorService,
+            ITrialService trialService) : base(data)
         {
             this.adminService = adminService;
             this.doctorService = doctorService;
+            this.trialService = trialService;
         }
 
 
@@ -108,16 +110,9 @@
         [HttpGet]
         public ActionResult AddDoctor()
         {
-            AddDoctorViewModel model = new AddDoctorViewModel()
+            var model = new AddDoctorViewModel()
             {
-                Specialty = this.Data
-                .Specialities
-                .All()
-                .Select(x => new SelectListItem
-                {
-                    Value = x.Id.ToString(),
-                    Text = x.Title
-                })
+                Specialty = adminService.GetSpecialty()
             };
 
             return View(model);
@@ -128,8 +123,10 @@
         {
             if (ModelState.IsValid)
             {
+                var specialty = this.Data.Specialities.GetById(model.SpecialityId);
                 var doc = Mapper.Map<Doctor>(model);
                 doc.Image = this.adminService.GetImage(model);
+                doc.Specialty = specialty;
                 this.Data.Doctors.Add(doc);
                 this.Data.SaveChanges();
 
@@ -139,5 +136,71 @@
             return View(model);
         }
 
+        
+        public ActionResult DeleteDoctor(int id)
+        {
+            var doc = this.Data.Doctors.GetById(id);
+
+            if (doc == null)
+            {
+                return HttpNotFound("There is no doctor with such Id");
+            }
+
+            this.Data.Doctors.Delete(doc);
+            this.Data.SaveChanges();
+            return RedirectToAction("AllDoctors");
+        }
+
+
+        public ActionResult AllTrials()
+        {
+            return View(trialService.GetTrials());
+        }
+
+        [HttpGet]
+        public ActionResult AddTrial()
+        {
+            AddTrialViewModel model = new AddTrialViewModel()
+            {
+                Specialty = this.adminService.GetSpecialty()
+            };
+
+            return View(model);
+        }
+
+        [HttpPost]
+        public ActionResult AddTrial(AddTrialViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var specialty = this.Data.Specialities.GetById(model.SpecialityId);
+                var trial = Mapper.Map<ClinicalTrial>(model);
+                trial.Speciality = specialty;
+                this.Data.ClinicalTrials.Add(trial);
+                this.Data.SaveChanges();
+
+                return RedirectToAction("AllTrials");
+            }
+
+            model.Specialty = this.adminService.GetSpecialty();
+
+            return View(model);
+        }
+
+
+
+        public ActionResult DeleteTrial(int id)
+        {
+            var trial = this.Data.ClinicalTrials.GetById(id);
+
+            if (trial == null)
+            {
+                return HttpNotFound("There is no trial with such Id");
+            }
+
+            this.Data.ClinicalTrials.Delete(trial);
+            this.Data.SaveChanges();
+            return RedirectToAction("AllTrials");
+        }
     }
 }

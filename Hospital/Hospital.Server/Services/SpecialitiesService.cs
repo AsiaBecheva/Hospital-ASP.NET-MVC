@@ -17,6 +17,7 @@
 
         public SpecialitiesViewModel GetById(int id)
         {
+
             var currentSpeciality = this.Data
                .Specialities
                .All()

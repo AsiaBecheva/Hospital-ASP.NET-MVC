@@ -87,14 +87,14 @@
                     {
                         Title = "Trial - " + i + ".1",
                         Price = random.RandomDataInt(25, 4587),
-                        IsAvailable = true,
+                        IsAvailable = IsAvailable.Yes,
                     };
 
                     var clinicalTrial2 = new ClinicalTrial
                     {
                         Title = "Trial - " + i + ".2",
                         Price = random.RandomDataInt(48, 565),
-                        IsAvailable = false,
+                        IsAvailable = IsAvailable.No,
                     };
 
                     var listDoctors = new List<Doctor>();

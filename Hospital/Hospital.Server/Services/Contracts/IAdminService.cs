@@ -3,6 +3,8 @@
     using DatabaseModels;
     using Models.AdminViewModels;
     using System.Collections.Generic;
+    using System.Linq;
+    using System.Web.Mvc;
 
     public interface IAdminService
     {
@@ -13,5 +15,7 @@
         PDF GetPDF(AddResultViewModel result);
 
         Image GetImage(AddDoctorViewModel doctor);
+
+        IQueryable<SelectListItem> GetSpecialty();
     }
 }

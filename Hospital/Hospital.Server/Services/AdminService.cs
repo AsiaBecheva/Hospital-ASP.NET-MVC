@@ -9,6 +9,7 @@
     using System.Collections.Generic;
     using System.IO;
     using System.Linq;
+    using System.Web.Mvc;
 
     public class AdminService: IAdminService
     {
@@ -82,6 +83,20 @@
             }
 
             return file;
+        }
+
+        public IQueryable<SelectListItem> GetSpecialty()
+        {
+            var specialty = this.Data
+            .Specialities
+            .All()
+            .Select(x => new SelectListItem
+            {
+                Value = x.Id.ToString(),
+                Text = x.Title
+            });
+            
+            return specialty;
         }
     }
 }

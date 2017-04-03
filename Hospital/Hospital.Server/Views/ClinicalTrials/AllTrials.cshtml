@@ -1,5 +1,5 @@
 ﻿@model List<Hospital.Server.Models.TrialViewModel>
-
+@using Hospital.DatabaseModels
 
 <section class="features_table">
     <div class="container ">
@@ -20,7 +20,7 @@
                     <h3>Available</h3>
                     @foreach (var trial in Model)
                     {
-                        if (trial.IsAvailable == true)
+                        if (trial.IsAvailable == IsAvailable.Yes)
                         {
                             <li><i class="fa fa-check"></i></li>
                         }

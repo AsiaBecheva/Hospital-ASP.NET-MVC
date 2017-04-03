@@ -4,8 +4,6 @@
     using Infrastructure.Mapping;
     using System.ComponentModel.DataAnnotations;
     using System.Web;
-    using AutoMapper;
-    using System;
 
     public class AddResultViewModel: IMapFrom<ClinicalResult> 
     {

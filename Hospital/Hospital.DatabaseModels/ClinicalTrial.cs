@@ -6,7 +6,7 @@
 
         public string Title { get; set; }
 
-        public bool IsAvailable { get; set; }
+        public IsAvailable IsAvailable { get; set; }
 
         public virtual Speciality Speciality { get; set; }
 

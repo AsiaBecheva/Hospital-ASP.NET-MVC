@@ -1,0 +1,48 @@
+﻿@model Hospital.Server.Models.AdminViewModels.AddTrialViewModel
+
+@{
+    Layout = "~/Views/Shared/_AdministrationLayout.cshtml";
+}
+
+@using (Html.BeginForm("AddTrial", "Administration", FormMethod.Post, new { @class = "form-horizontal", role = "form"}))
+{
+    <div class="row">
+        <div class="form-group">
+            @Html.LabelFor(x => x.Title, new { @class = "col-md-offset-2 col-md-2 control-label" })
+            <div class="col-md-5">
+                @Html.TextBoxFor(x => x.Title, new { @class = "form-control" })
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group">
+            @Html.LabelFor(m => m.Specialty, new { @class = "col-md-offset-2 col-md-2 control-label" })
+            <div class="col-md-5">
+                @Html.DropDownListFor(m => m.SpecialityId, Model.Specialty, new { @class = "form-control" })
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group">
+            @Html.LabelFor(m => m.IsAvailable, new { @class = "col-md-offset-2 col-md-2 control-label" })
+            <div class="col-md-5">
+                @Html.EnumDropDownListFor(m => m.IsAvailable, new { @class = "form-control", rows = 8 })
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group">
+            @Html.LabelFor(m => m.Price, new { @class = "col-md-offset-2 col-md-2 control-label" })
+            <div class="col-md-5">
+                @Html.TextBoxFor(m => m.Price, new { @class = "form-control", rows = 8 })
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group">
+            <div class="col-md-offset-6 col-md-3">
+                <input type="submit" class="btn btn-primary" />
+            </div>
+        </div>
+    </div>
+}

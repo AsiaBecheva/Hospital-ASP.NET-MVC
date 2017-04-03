@@ -238,6 +238,7 @@
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AdminViewModels\AddDoctorViewModel.cs" />
     <Compile Include="Models\AdminViewModels\AddResultViewModel.cs" />
+    <Compile Include="Models\AdminViewModels\AddTrialViewModel.cs" />
     <Compile Include="Models\AdminViewModels\PatientViewModel.cs" />
     <Compile Include="Models\AdminViewModels\ResultViewModel.cs" />
     <Compile Include="Models\DoctorViewModel.cs" />
@@ -335,7 +336,8 @@
     <Content Include="Views\Doctors\GetDoctorById.cshtml" />
     <Content Include="Views\Administration\AllDoctors.cshtml" />
     <Content Include="Views\Administration\AddDoctor.cshtml" />
-    <Content Include="Views\Administration\EditDoctor.cshtml" />
+    <Content Include="Views\Administration\AllTrials.cshtml" />
+    <Content Include="Views\Administration\AddTrial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

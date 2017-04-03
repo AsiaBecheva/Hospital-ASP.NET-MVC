@@ -3,6 +3,7 @@
     using DatabaseModels;
     using Infrastructure.Mapping;
     using System.Collections.Generic;
+    using AutoMapper;
 
     public class SpecialitiesViewModel: IMapFrom<Speciality>
     {

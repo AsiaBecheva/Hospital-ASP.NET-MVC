@@ -11,7 +11,8 @@
                     <button class="btn btn-secondary btn-lg dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <span>Select:</span> Category
                     </button>
-                    <div class="dropdown-menu">
+
+                    <div id="specialtiesButton" class="dropdown-menu">
                         @foreach (var speciality in Model)
                         {
                             <a href="@Url.Action("GetSpecialityById", "Specialities", new { id = @speciality.Id})">@speciality.Title</a>
